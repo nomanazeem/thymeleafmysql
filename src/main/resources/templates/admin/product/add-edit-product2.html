@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Add / Edit Product</title>
+</head>
+<body>
+<div align="center">
+    <h1>Add / Edit Product</h1>
+    <br />
+    <form action="#" th:action="@{/product/save}" th:object="${product}"
+          method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Product ID:</td>
+                <td>
+                    <input type="text" th:field="*{id}" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <td>Product Type: <span>*</span></td>
+                <td>
+                    <select th:field="*{productTypeId}">
+                        <option value="">Select...</option>
+                        <option th:each="productType : ${productTypes}" th:value="${productType.id}" th:utext="${productType.name}"/>
+                    </select>
+                    <div class="alert alert-warning" th:if="${#fields.hasErrors('productTypeId')}" th:errors="*{productTypeId}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Product Name: <span>*</span></td>
+                <td>
+                    <input type="text" th:field="*{name}" />
+                    <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Brand:</td>
+                <td><input type="text" th:field="*{brand}" /></td>
+            </tr>
+            <tr>
+                <td>Made In:</td>
+                <td><input type="text" th:field="*{madein}" /></td>
+            </tr>
+            <tr>
+                <td>Price: <span>*</span></td>
+                <td><input type="text" th:field="*{price}" />
+                    <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><a th:href="@{/product/list}">
+                    <button type="button">Cancel</button>
+                </a>
+                | <button type="submit">Save</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

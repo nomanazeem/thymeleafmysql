@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Add / Edit Product Type</title>
+</head>
+<body>
+<div align="center">
+    <h1>Add / Edit Product Type</h1>
+    <br />
+    <form action="#" th:action="@{/producttype/save}" method="post" th:object="${producttype}">
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Product Type ID:</td>
+                <td>
+                    <input type="text" th:field="*{id}" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <td>Product Type Name: <span>*</span></td>
+                <td>
+                    <input type="text" th:field="*{name}" />
+                    <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><a th:href="@{/producttype/list}">
+                    <button type="button">Cancel</button>
+                </a>
+                    | <button type="submit">Save</button></td>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
